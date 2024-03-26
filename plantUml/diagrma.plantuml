@@ -1,0 +1,51 @@
+@startuml
+
+entity Usuario {
+    + nombre: string
+    + Apellidos : String 
+    - Edad : int
+    + listaLibrosReservados: List<Libro>
+    + dejarReseña(): void
+}
+
+entity Libro {
+    + título: string
+    + autor: Autor
+    + categorías: List<Categoría>
+    + reseñas: List<Reseña>
+}
+
+entity Reseña {
+    + texto: string
+    + libro: Libro
+    + usuario: Usuario
+}
+
+entity Autor {
+    + nombre: string
+    + listaLibros: List<Libro>
+}
+
+entity Categoría {
+    + nombre: string
+    + libros: List<Libro>
+}
+
+entity Autor_Libro{
+
+}
+
+entity Libro_Categoria{
+
+}
+
+Autor "n" -- "1" Autor_Libro
+Libro "n" -- "1" Autor_Libro
+Usuario "n" -- "1"Reseña
+Categoría "n" -- "1" Libro_Categoria
+Libro "n" -- "1" Libro_Categoria
+Usuario "1" -- "n" Libro 
+Libro "1" -- "n" Reseña 
+
+
+@enduml
